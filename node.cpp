@@ -8,11 +8,8 @@ bool node_number_compare(const Node *a, const Node *b) {
 	return a->number > b->number;
 }
 
-bool node_string_compare(const Node *a, const Node *b) {
-	int a_size = a->string.length();
-	int b_size = b->string.length();
-	
-	return a_size > b_size;
+bool node_string_compare(const Node *a, const Node *b) {	
+	return std::stoi(a->string) > std::stoi(b->string);
 }
 
 int void_number_compare(const void *a, const void *b) {
