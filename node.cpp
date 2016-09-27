@@ -5,7 +5,7 @@
 #include <iostream>
 
 bool node_number_compare(const Node *a, const Node *b) {
-	return a->number > b->number;
+	return a->number < b->number;
 }
 
 bool node_string_compare(const Node *a, const Node *b) {	
