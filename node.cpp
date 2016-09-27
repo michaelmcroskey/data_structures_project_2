@@ -13,19 +13,17 @@ bool node_string_compare(const Node *a, const Node *b) {
 }
 
 int void_number_compare(const void *a, const void *b) {
-	const int* a_num = (const int*) a;
-	const int* b_num = (const int*) b;
+	const Node* aNode = *(const Node**) a;
+	const Node* bNode = *(const Node**) b;
 	
-	return (*a_num > *b_num) ? 0 : 1;
+	return (aNode->number < bNode->number) ? 0 : 1;
 }
 
-// realized we're not comparing length and need to typecast
-// but can't figure out how to do that with const void *
 int void_string_compare(const void *a, const void *b) {
-	const std::string* a_str = (const std::string*) a;
-	const std::string* b_str = (const std::string*) b;
+	const Node* aNode = *(const Node**) a;
+	const Node* bNode = *(const Node**) b;
 	
-	return (a_str->length() > b_str->length()) ? 1 : 0;
+	return (std::stoi(aNode->number) < std::stoi(bNode->number)) ? 0 : 1;
 }
 
 void dump_node(Node *n) {

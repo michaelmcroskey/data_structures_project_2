@@ -20,8 +20,8 @@ void stl_sort(List &l, bool numeric) {
 	
 	std::sort(a, a+size, node_number_compare);
 	
-	// update the links between the struct Nodes to reflect the sorted order
-	a[size] = nullptr;
+	// update the links between the struct Nodes
+	a[size] = nullptr;		// last element is null
 	struct Node *curr;		// current pointer
 
 	for (int j=0; j < size; j++){
@@ -30,7 +30,7 @@ void stl_sort(List &l, bool numeric) {
 		curr = curr->next;
 	}
 	
-	// set the head of the struct List after you have set the links of all the struct Nodes
+	// set the head of struct List
 	l.head = a[0];
 	
 }
