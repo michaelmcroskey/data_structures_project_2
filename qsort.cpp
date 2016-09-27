@@ -19,7 +19,11 @@ void qsort_sort(List &l, bool numeric) {
 		p = p->next;
 	}
 	
-	std::qsort(a, size, sizeof(struct Node *), void_number_compare);
+	if (numeric){
+		std::qsort(a, size, sizeof(struct Node *), void_number_compare);
+	} else {
+		std::qsort(a, size, sizeof(struct Node *), void_string_compare);
+	}
 	
 	// update the links between the struct Nodes
 	a[size] = nullptr;		// last element is null

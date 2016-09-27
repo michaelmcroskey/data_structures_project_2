@@ -4,6 +4,7 @@
 
 #include <memory>
 #include <stdexcept>
+#include <string>
 
 List::List() {
 	head = nullptr;
@@ -26,10 +27,12 @@ void List::push_front(const std::string &s) {
 	newNode->next = head;
 	head = newNode;
 	newNode->string = s;
-	try
-	    newNode->number = stoi(s);
-	catch(...)
+	try{
+	    newNode->number = std::stoi(s);
+	}
+	catch(int e){
 	    newNode->number = 0;
+	}
 	    
 	size += 1;
 }

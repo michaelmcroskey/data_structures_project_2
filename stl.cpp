@@ -18,7 +18,11 @@ void stl_sort(List &l, bool numeric) {
 		p = p->next;
 	}
 	
-	std::sort(a, a+size, node_number_compare);
+	if (numeric){
+		std::sort(a, a+size, node_number_compare);
+	} else {
+		std::sort(a, a+size, node_string_compare);
+	}
 	
 	// update the links between the struct Nodes
 	a[size] = nullptr;		// last element is null
