@@ -25,6 +25,7 @@ void List::push_front(const std::string &s) {
 	Node* newNode = new Node;
 	newNode->next = head;
 	head = newNode;
+	newNode->string = s;
 	try
 	    newNode->number = stoi(s);
 	catch(...)
