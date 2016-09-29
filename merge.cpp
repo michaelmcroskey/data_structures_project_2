@@ -63,11 +63,11 @@ Node *merge(Node *left, Node *right, CompareFunction compare) {
     // set head node to smaller first element
     if( compare( left, right ) ) {
         head = right;
-        right = right->right;
+        right = right->next;
     }
     else {
         head = left;
-        left = left->left;
+        left = left->next;
     }
         
     Node *current = head;
