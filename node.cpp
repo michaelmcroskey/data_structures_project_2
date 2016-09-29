@@ -10,7 +10,7 @@ bool node_number_compare(const Node *a, const Node *b) {
 }
 
 bool node_string_compare(const Node *a, const Node *b) {	
-	return std::stoi(a->string) < std::stoi(b->string);
+	return a->string < b->string;
 }
 
 int void_number_compare(const void *a, const void *b) {
@@ -24,7 +24,7 @@ int void_string_compare(const void *a, const void *b) {
 	const Node* aNode = *(const Node**) a;
 	const Node* bNode = *(const Node**) b;
 	
-	return (std::stoi(aNode->string) < std::stoi(bNode->string)) ? 0 : 1;
+	return (aNode->string < bNode->string) ? 0 : 1;
 }
 
 void dump_node(Node *n) {
