@@ -10,7 +10,7 @@ bool node_number_compare(const Node *a, const Node *b) {
 }
 
 bool node_string_compare(const Node *a, const Node *b) {	
-	return std::stoi(a->string) > std::stoi(b->string);
+	return std::stoi(a->string) < std::stoi(b->string);
 }
 
 int void_number_compare(const void *a, const void *b) {
