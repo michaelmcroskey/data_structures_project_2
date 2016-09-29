@@ -61,7 +61,7 @@ Node *merge(Node *left, Node *right, CompareFunction compare) {
     Node *head;
     
     // set head node to smaller first element
-    if( compare( left, right ) ) {
+    if( compare( right, left ) ) {
         head = right;
         right = right->next;
     }
@@ -76,7 +76,7 @@ Node *merge(Node *left, Node *right, CompareFunction compare) {
     while(left || right){
         // must compare if neither list is empty
         if(left && right) {
-            if( compare( left, right ) ) {
+            if( compare( right, left ) ) {
                 current->next = right;
                 right = right->next;
             }
