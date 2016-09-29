@@ -15,7 +15,12 @@ Michael McRoskey, Troy Prince, David Mellitt
 ---
 
 **1) What is complexity of each of the sorting modes (ie. STL, QSORT, MERGE, QUICK)? For each method, briefly explain the best, average, and worst case complexities of the sorting mode in terms of Big-O notation.**
-
+     	 
+	 BEST     	AVERAGE		WORST
+STL:    
+QSORT: 
+MERGE:   O(n log(n))    O(n log(n))	O(n log(n))
+QUICK:   O(n log(n))    O(n log(n))     O(n^2)
 
 **2) Benchmark all four different sorting modes on files with the following number of integers:**
 
