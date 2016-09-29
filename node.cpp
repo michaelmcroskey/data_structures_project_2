@@ -16,15 +16,23 @@ bool node_string_compare(const Node *a, const Node *b) {
 int void_number_compare(const void *a, const void *b) {
 	const Node* aNode = *(const Node**) a;
 	const Node* bNode = *(const Node**) b;
-std::cout << "   " << aNode->number << std::endl;	
-	return (aNode->number < bNode->number) ? 0 : 1;
+	
+	if(aNode->number < bNode->number)
+	    return -1;
+	if(aNode->number > bNode->number)
+	    return 1;
+	return 0;
 }
 
 int void_string_compare(const void *a, const void *b) {
 	const Node* aNode = *(const Node**) a;
 	const Node* bNode = *(const Node**) b;
 	
-	return (aNode->string < bNode->string) ? 0 : 1;
+	if(aNode->string < bNode->string)
+	    return -1;
+	if(aNode->string > bNode->string)
+	    return 1;
+	return 0;
 }
 
 void dump_node(Node *n) {
