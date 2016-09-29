@@ -47,7 +47,7 @@ void partition(Node *head, Node *pivot, Node *&left, Node *&right, CompareFuncti
         next = current->next;
        
        // move current node to head of a side list
-        if( compare( pivot, current ) ) {
+        if( compare( current, pivot ) ) {
             current->next = left;
             left = current;
         }
