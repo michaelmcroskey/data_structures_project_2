@@ -21,39 +21,33 @@ void quick_sort(List &l, bool numeric) {
 }
 
 Node *qsort(Node *head, CompareFunction compare) {
-    // stop at empty or sorted
-    if(!head)
-        return NULL;
-
-    bool sorted = true;
-    for( Node *temp=head;temp->next;temp=temp->next)
-        if( compare(temp->next, temp) )
-            sorted = false;
-    if(sorted)
+    // stop at less than 2 elements
+    if(!head || !head->next)
         return head;
-        
+
     Node *left = NULL;
     Node *right = NULL;
 
+    Node *pivot = head;     // remove pivot
+    head = head->next;
+    pivot->next = NULL;
+
     // split list
-    partition( head, head, left, right, compare );
+    partition( head, pivot, left, right, compare );
 
     // recursion on both lists
     left  = qsort(left, compare);
     right = qsort(right, compare);
     
-    return concatenate(left, right);
+    // combine lists and pivot
+    head = concatenate(pivot, right);
+    return concatenate(left, head);
 }
 
 void partition(Node *head, Node *pivot, Node *&left, Node *&right, CompareFunction compare) {
     Node *current = head;
     Node *next;
 
-    right = current;            // put pivot in right list
-    current = current->next;
-    Node *rightEnd = right;     // track end of list
-    rightEnd->next = NULL;
-    
     // move through original list
     while(current) {
         next = current->next;
@@ -63,12 +57,7 @@ void partition(Node *head, Node *pivot, Node *&left, Node *&right, CompareFuncti
             current->next = left;
             left = current;
         }
-        else if( current->number==pivot->number ) {
-            rightEnd->next = current;   //place pivots together
-            current->next = NULL;
-            rightEnd = current;
-        }
-        else {                      // place at front of right list
+        else {
             current->next = right;
             right = current;
         }
