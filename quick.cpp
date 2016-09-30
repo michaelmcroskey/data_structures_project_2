@@ -21,16 +21,23 @@ void quick_sort(List &l, bool numeric) {
 }
 
 Node *qsort(Node *head, CompareFunction compare) {
-    // stop if less than two elements
-    if( !head || !head->next )
+    // stop at empty or sorted
+    if(!head)
+        return NULL;
+
+    bool sorted = true;
+    for( Node *temp=head;temp->next;temp=temp->next)
+        if( compare(temp->next, temp) )
+            sorted = false;
+    if(sorted)
         return head;
         
     Node *left = NULL;
     Node *right = NULL;
-    
+
     // split list
     partition( head, head, left, right, compare );
-    
+
     // recursion on both lists
     left  = qsort(left, compare);
     right = qsort(right, compare);
@@ -41,17 +48,27 @@ Node *qsort(Node *head, CompareFunction compare) {
 void partition(Node *head, Node *pivot, Node *&left, Node *&right, CompareFunction compare) {
     Node *current = head;
     Node *next;
+
+    right = current;            // put pivot in right list
+    current = current->next;
+    Node *rightEnd = right;     // track end of list
+    rightEnd->next = NULL;
     
     // move through original list
     while(current) {
         next = current->next;
        
-       // move current node to head of a side list
+       // move current node to front of a side list
         if( compare( current, pivot ) ) {
             current->next = left;
             left = current;
         }
-        else {
+        else if( current->number==pivot->number ) {
+            rightEnd->next = current;   //place pivots together
+            current->next = NULL;
+            rightEnd = current;
+        }
+        else {                      // place at front of right list
             current->next = right;
             right = current;
         }
