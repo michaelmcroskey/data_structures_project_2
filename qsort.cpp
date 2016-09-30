@@ -5,28 +5,29 @@
 #include <cstdlib>
 #include <array>
 #include <iostream>
+#include <vector>
 
 void qsort_sort(List &l, bool numeric) {
 	
 	int size = l.size;
 		
-	struct Node *a[size+1];		// create array
+	std::vector<struct Node *> a;		// create array
+    a.reserve(size+1);
 	struct Node *p = l.head;		// current pointer at head
 	
-	int i = 0;	
 	while(p != nullptr){			// copy element-by-element
-		a[i++] = p;
+		a.push_back(p);
 		p = p->next;
 	}
 	
 	if (numeric){
-		std::qsort(a, size, sizeof(struct Node *), void_number_compare);
+		std::qsort(&a[0], size, sizeof(struct Node *), void_number_compare);
 	} else {
-		std::qsort(a, size, sizeof(struct Node *), void_string_compare);
+		std::qsort(&a[0], size, sizeof(struct Node *), void_string_compare);
 	}
 	
 	// update the links between the struct Nodes
-	a[size] = nullptr;		// last element is null
+	a.push_back(nullptr);		// last element is null
 	struct Node *curr;		// current pointer
 
 	for (int j=0; j < size; j++){

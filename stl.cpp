@@ -4,28 +4,30 @@
 
 #include <algorithm>
 #include <iostream>
+#include <vector>
 
 void stl_sort(List &l, bool numeric) {
 	
 	int size = l.size;
 	
-	struct Node *a[size+1];		// create array
+	std::vector<struct Node *> a;		// create array
+    a.reserve(size+1);
 	struct Node *p = l.head;		// current pointer at head
 	
-	int i = 0;	
-	while(p != nullptr){			// copy element-by-element
-		a[i++] = p;
+	while(p != nullptr)			// copy element-by-element
+    {
+		a.push_back(p);
 		p = p->next;
 	}
-	
+
 	if (numeric){
-		std::sort(a, a+size, node_number_compare);
+		std::sort(&a[0], &a[0]+size, node_number_compare);
 	} else {
-		std::sort(a, a+size, node_string_compare);
+		std::sort(&a[0], &a[0]+size, node_string_compare);
 	}
 	
 	// update the links between the struct Nodes
-	a[size] = nullptr;		// last element is null
+	a.push_back(nullptr);		// last element is null
 	struct Node *curr;		// current pointer
 
 	for (int j=0; j < size; j++){
