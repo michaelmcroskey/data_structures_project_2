@@ -92,14 +92,14 @@ the best if it used a third partition for keys equal to the pivot.
 Group Contributions
 -------------------
 
-- David: 
+- David Mellitt (dmellitt): 
 
 Merge.cpp and quick.cpp
 
-- Troy:
+- Troy Prince (tprince):
 
 shell script, benchmark testing, readme, help with code
 
-- Michael:
+- Michael McRoskey (mmcrosk1):
 
 List.cpp, stl.cpp, qsort.cpp, comparison functions
